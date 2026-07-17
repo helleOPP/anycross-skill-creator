@@ -1,6 +1,22 @@
-# AnyCross Creator
+# AnyCross Creator — build Lark AnyCross workflows from `flow.json`
 
-A [Claude Code](https://claude.com/claude-code) skill that builds, validates, and packages **AnyCross** workflows (the Lark/Feishu automation platform) as importable `.zip` files.
+Documentation and tooling for the **AnyCross** workflow file format (`flow.json`), packaged as an **AI agent skill** that generates, validates, and packages AnyCross workflows into importable `.zip` files.
+
+AnyCross is Lark/Feishu's automation platform (their answer to Zapier or Make). It has no public schema documentation for the exported workflow file — so everything here was **reverse-engineered from real, running exports**: connector IDs, operation IDs, the node shape, the four spel reference types, LarkBase field read/write formats, and the error messages you hit along the way.
+
+## Works with any AI coding agent — or none
+
+The packaging follows the [Agent Skills](https://code.claude.com/docs/en/skills) convention (a `SKILL.md` plus supporting files), which [Claude Code](https://claude.com/claude-code) loads automatically. But **nothing inside is Claude-specific**:
+
+| Layer | What it is | Portable to |
+|---|---|---|
+| `SKILL.md` | The build procedure, in plain markdown | Any agent that reads instructions — Cursor, Copilot, Codex, Gemini CLI, Windsurf, Cline. Paste it as context or a system prompt. |
+| `references/` | The AnyCross schema documentation | Anything. It's just markdown. Feed it to your model, or read it yourself. |
+| `scripts/` | `inspect_export.py`, `validate_flow.py`, `pack_flow.py` | Plain Python 3.8+, standard library only. No AI involved — run them from a terminal or a CI job. |
+
+So use it three ways: let an agent drive the whole loop, hand your model the reference files as context, or ignore the AI part entirely and use the scripts plus docs by hand.
+
+This is a **documentation-first** project that happens to ship as a skill — the schema knowledge is the asset, and it outlives whichever agent you point at it.
 
 > Hi everyone,
 >
@@ -30,23 +46,30 @@ So this skill is built around one rule: **copy IDs from a real export, never fro
 
 ## Install
 
-Drop the `anycross-creator/` folder into a skills directory:
-
 ```bash
-# Available in every project (personal scope)
 git clone https://github.com/helleOPP/anycross-skill-creator.git
-cp -r anycross-skill-creator/anycross-creator ~/.claude/skills/
-
-# Or scoped to one project
-cp -r anycross-skill-creator/anycross-creator /path/to/your-project/.claude/skills/
 ```
 
 Requirements: **Python 3.8+**. No third-party packages — standard library only.
 
-Verify Claude can see it:
+**Claude Code** — drop the folder into a skills directory and it loads on its own:
 
+```bash
+cp -r anycross-skill-creator/anycross-creator ~/.claude/skills/              # every project
+cp -r anycross-skill-creator/anycross-creator /path/to/project/.claude/skills/   # one project
 ```
-/anycross-creator
+
+Check it registered with `/anycross-creator`.
+
+**Cursor / Copilot / Codex / Gemini CLI / any other agent** — there's no plugin to install. Point your model at the files:
+
+- Paste `anycross-creator/SKILL.md` in as context, a system prompt, or a rules file (`.cursorrules` and friends).
+- When it starts building, give it the relevant `references/*.md` too — `connectors.md` and `flow-schema.md` carry the IDs and shapes it would otherwise hallucinate.
+
+**No agent at all** — the scripts stand alone:
+
+```bash
+python anycross-creator/scripts/inspect_export.py "My Flow.zip"
 ```
 
 ## How to use
@@ -139,6 +162,50 @@ anycross-creator/
 - **LarkBase read shapes are not write shapes.** A Person field must be passed back as the raw object array, not an extracted name. A URL field needs `{link, text}` — a plain string returns `URLFieldConvFail`.
 
 More in `references/known-errors.md`, each entry written as a reusable class of mistake.
+
+## Troubleshooting AnyCross errors
+
+The errors below are the ones that cost real hours, with the actual cause rather than the folklore. Full ledger, with the reasoning behind each, in [`references/known-errors.md`](anycross-creator/references/known-errors.md).
+
+### "Unable to parse uploaded file"
+
+Your `flow.json` is not valid UTF-8. On Windows the usual culprit is `open(path, "w")` without `encoding=`, which writes through the cp1252 locale codec and mangles any non-Latin text.
+
+**It is *not* caused by non-ASCII characters**, despite that claim being widely repeated. AnyCross's own UI exports are full of raw Vietnamese and emoji. Write with `encoding="utf-8"`, or dump with `ensure_ascii=True` if you want the codec question to never arise.
+
+### `URLFieldConvFail`
+
+You wrote a plain string into a LarkBase URL field. It needs an object:
+
+```javascript
+{link: "https://example.com", text: "Open"}   // even when link and text are identical
+```
+
+### A Person field writes blank, or the node rejects the value
+
+You read the Person field, ran it through `extract()` into a display name, and wrote the string back. LarkBase wants the object array it gave you — pass `f['<PersonField>'] || []` through untouched. Read shapes and write shapes are not the same thing.
+
+### A spel reference silently resolves to null
+
+No error, just empty data downstream. Three usual causes:
+
+1. **Missing `.result`** — script node output is namespaced. A handler returning `{rows: [...]}` in `script-2` is `$.script-2.result.rows`, not `$.script-2.rows`.
+2. **`expression` and `node_tree.path` disagree** because only one was edited. Generate both from one variable.
+3. The referenced node ID doesn't exist — a typo, or renumbering during a rewrite.
+
+`validate_flow.py` catches (2) and (3).
+
+### The script node imports empty
+
+The parameter key is `js_code`, not `code`.
+
+### A Bitable search returns nothing, on a table that clearly has rows
+
+Either the operation ID belongs to the other Bitable connector generation (v2.0 and v2.7 have different IDs *and* different parameter names for the same action), or your filter has an empty `conditions` array — which means "no filter, return everything", not "match nothing".
+
+### An `im` node fails to send to a group
+
+The bot behind the credential is not a member of the target chat. No amount of JSON fixing helps — add the bot to the group in Lark.
 
 ## Verified vs. unverified
 
