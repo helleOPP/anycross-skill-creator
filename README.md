@@ -5,7 +5,7 @@ A [Claude Code](https://claude.com/claude-code) skill that builds, validates, an
 > Hi everyone,
 >
 > This is a skill for creating AnyCross workflows — I hope you find it useful.
-> If you need any help, contact me on WhatsApp: **+84 96 246 02 65**
+> If you need any help, contact me at **phucvn2019@gmail.com**
 >
 > Thank you,
 >
@@ -158,4 +158,4 @@ The most useful contribution is a **connector ID from a tenant this skill hasn't
 
 ## Contact
 
-Questions or help: **WhatsApp +84 96 246 02 65** — Phuc
+Questions or help: **phucvn2019@gmail.com** — Phuc
