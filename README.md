@@ -162,4 +162,8 @@ The most useful contribution is a **connector ID from a tenant this skill hasn't
 
 ## Contact
 
-Questions or help: **phucvn2019@gmail.com** — Phuc
+Stuck on a flow, or want one built for you? Get in touch — **phucvn2019@gmail.com**
+
+I build automation and analytics for SMEs: Lark/Feishu (AnyCross, Lark Base), n8n, and BI/reporting — mostly around **supply chain and operations**, where the flow has to survive contact with how people actually work, not just pass a demo.
+
+— Phuc
