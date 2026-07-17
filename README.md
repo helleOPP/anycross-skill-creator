@@ -156,6 +156,10 @@ The most useful contribution is a **connector ID from a tenant this skill hasn't
 1. **Record the class, not the incident.** "Wrote a plain string to a URL field → `URLFieldConvFail`" helps everyone; "fixed the link on the booking flow" helps nobody.
 2. **No tenant data.** No app_tokens, table IDs, credential IDs, chat IDs, or real record IDs — use `<app_token>` placeholders. This file gets shared.
 
+## License
+
+[MIT](LICENSE) — use it, fork it, modify it, ship it in your own work, commercially or not. Just keep the copyright notice. No warranty.
+
 ## Contact
 
 Questions or help: **phucvn2019@gmail.com** — Phuc
