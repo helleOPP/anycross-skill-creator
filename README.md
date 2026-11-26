@@ -95,6 +95,12 @@ Gemini CLI...).
 
 **Get Pro:** [buy AnyCross Creator Pro - $20 one-time](https://buy.polar.sh/polar_cl_sCtvkkceWJUDmMVI7Lh5cCTWOGDB0IuBGQjBo3pQQYg). You get the skill as a zip right after checkout; unzip it into your agent's skills folder (for Claude Code: `~/.claude/skills/`).
 
+## n8n or Lark AnyCross?
+
+Running on Lark but automating with n8n? Read the comparison before paying for a server you may not need:
+[n8n vs Lark AnyCross: which automation tool should a Lark-based company use?](docs/n8n-vs-lark-anycross.md)
+(Tiếng Việt: [n8n hay Lark AnyCross?](docs/n8n-vs-lark-anycross.vi.md))
+
 ## How to use
 
 Just describe the automation you want. The skill triggers on its own when you mention AnyCross, a `flow.json`, or a Lark automation:
