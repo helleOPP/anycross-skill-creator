@@ -106,7 +106,6 @@ No. Accounts are chosen in the Lark AnyCross interface after import; the workflo
 
 - **AnyCross Creator (free, open source):** https://github.com/helleOPP/anycross-skill-creator
 - **AnyCross Creator Pro (USD 20, one-time):** https://buy.polar.sh/polar_cl_sCtvkkceWJUDmMVI7Lh5cCTWOGDB0IuBGQjBo3pQQYg
-- **Need workflows built for your business:** phucvn2019@gmail.com
 
 ---
 

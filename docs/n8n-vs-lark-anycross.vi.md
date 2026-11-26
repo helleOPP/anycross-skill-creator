@@ -106,7 +106,6 @@ Không. Tài khoản được chọn trong giao diện Lark AnyCross sau khi imp
 
 - **AnyCross Creator (miễn phí, mã nguồn mở):** https://github.com/helleOPP/anycross-skill-creator
 - **AnyCross Creator Pro ($20, trả một lần):** https://buy.polar.sh/polar_cl_sCtvkkceWJUDmMVI7Lh5cCTWOGDB0IuBGQjBo3pQQYg
-- **Cần người dựng sẵn workflow cho doanh nghiệp:** phucvn2019@gmail.com
 
 ---
 
