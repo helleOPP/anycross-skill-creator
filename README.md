@@ -4,6 +4,8 @@ Documentation and tooling for the **AnyCross** workflow file format (`flow.json`
 
 AnyCross is Lark/Feishu's automation platform (their answer to Zapier or Make). It has no public schema documentation for the exported workflow file — so everything here was **reverse-engineered from real, running exports**: connector IDs, operation IDs, the node shape, the four spel reference types, LarkBase field read/write formats, and the error messages you hit along the way.
 
+> **Want it to just work, even without an export to copy from?** **AnyCross Creator Pro** has the real codes for 42 apps built in, a stronger mistake checker and ready-made examples. [See Free vs Pro](#free-vs-pro).
+
 ## Works with any AI coding agent — or none
 
 The packaging follows the [Agent Skills](https://code.claude.com/docs/en/skills) convention (a `SKILL.md` plus supporting files), which [Claude Code](https://claude.com/claude-code) loads automatically. But **nothing inside is Claude-specific**:
@@ -71,6 +73,27 @@ Check it registered with `/anycross-creator`.
 ```bash
 python anycross-creator/scripts/inspect_export.py "My Flow.zip"
 ```
+
+## Free vs Pro
+
+This repo is the **free edition** (MIT). **AnyCross Creator Pro** is the paid edition by the same author, for people who
+build AnyCross flows often, or who don't have a working flow to export and copy from.
+
+| | Free (this repo) | Pro |
+|---|---|---|
+| Price | Free | One-time purchase on [Agensi](https://www.agensi.io/users/nguy-n-h-u-ph-c) |
+| Describe the automation, get an import-ready `.zip` | ✅ | ✅ |
+| Copy real codes from your own exported flow (`inspect`) | ✅ | ✅ |
+| Project variables (`$.config.*`) | ✅ | ✅ |
+| Real codes built in, no export needed | a small verified list | **42 apps / 163 actions** built in, plus reference pages for **89 apps** |
+| Mistake checker before import | file structure, node shape, references | everything in Free, plus: steps reading data that doesn't exist yet, wrong output paths, loops over the wrong data, missing required settings, invalid Lark Base filters and schedules, leftover example values, passwords typed into the flow |
+| Ready-made examples | build guide | **25 workflow patterns** from Lark's official templates and **11 tested recipes** (Base webhook, API endpoint, nightly sync, create-or-update, cards, REST calls, error handling, approvals, Google Docs) |
+| Tested | against real exports | against all **112 official Lark templates**, and by importing its flows into a real AnyCross account |
+
+Both editions run on plain Python 3.8+ and work with any AI agent that reads skills (Claude Code, Cursor, Codex,
+Gemini CLI...).
+
+**Get Pro:** search **"AnyCross Creator Pro"** on [Agensi](https://www.agensi.io/users/nguy-n-h-u-ph-c).
 
 ## How to use
 
@@ -216,6 +239,8 @@ The skill is explicit about its own confidence, and so is this README:
 
 If you have an export using any of the unverified connectors, an issue or PR with the `inspect_export.py` output would firm those up for everyone.
 
+Need `http-client` POST/PUT, Google Drive or other apps this list marks unverified right now? **AnyCross Creator Pro** includes them, taken from the connector schemas. See [Free vs Pro](#free-vs-pro).
+
 ## Contributing
 
 The most useful contribution is a **connector ID from a tenant this skill hasn't seen**, or a **new entry in `known-errors.md`**. Two conventions keep that file useful:
@@ -230,6 +255,8 @@ The most useful contribution is a **connector ID from a tenant this skill hasn't
 ## Contact
 
 Stuck on a flow, or want one built for you? Get in touch — **phucvn2019@gmail.com**
+
+Prefer to do it yourself, faster? Try **[AnyCross Creator Pro](https://www.agensi.io/users/nguy-n-h-u-ph-c)**.
 
 I build automation and analytics for SMEs: Lark/Feishu (AnyCross, Lark Base), n8n, and BI/reporting — mostly around **supply chain and operations**, where the flow has to survive contact with how people actually work, not just pass a demo.
 
