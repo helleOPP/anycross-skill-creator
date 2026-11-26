@@ -81,7 +81,7 @@ build AnyCross flows often, or who don't have a working flow to export and copy 
 
 | | Free (this repo) | Pro |
 |---|---|---|
-| Price | Free | One-time purchase on [Agensi](https://www.agensi.io/users/nguy-n-h-u-ph-c) |
+| Price | Free | **$20 one-time** - [buy here](https://buy.polar.sh/polar_cl_sCtvkkceWJUDmMVI7Lh5cCTWOGDB0IuBGQjBo3pQQYg) (instant zip download) |
 | Describe the automation, get an import-ready `.zip` | ✅ | ✅ |
 | Copy real codes from your own exported flow (`inspect`) | ✅ | ✅ |
 | Project variables (`$.config.*`) | ✅ | ✅ |
@@ -93,7 +93,7 @@ build AnyCross flows often, or who don't have a working flow to export and copy 
 Both editions run on plain Python 3.8+ and work with any AI agent that reads skills (Claude Code, Cursor, Codex,
 Gemini CLI...).
 
-**Get Pro:** search **"AnyCross Creator Pro"** on [Agensi](https://www.agensi.io/users/nguy-n-h-u-ph-c).
+**Get Pro:** [buy AnyCross Creator Pro - $20 one-time](https://buy.polar.sh/polar_cl_sCtvkkceWJUDmMVI7Lh5cCTWOGDB0IuBGQjBo3pQQYg). You get the skill as a zip right after checkout; unzip it into your agent's skills folder (for Claude Code: `~/.claude/skills/`).
 
 ## How to use
 
@@ -256,7 +256,7 @@ The most useful contribution is a **connector ID from a tenant this skill hasn't
 
 Stuck on a flow, or want one built for you? Get in touch — **phucvn2019@gmail.com**
 
-Prefer to do it yourself, faster? Try **[AnyCross Creator Pro](https://www.agensi.io/users/nguy-n-h-u-ph-c)**.
+Prefer to do it yourself, faster? Get **[AnyCross Creator Pro](https://buy.polar.sh/polar_cl_sCtvkkceWJUDmMVI7Lh5cCTWOGDB0IuBGQjBo3pQQYg)** ($20 one-time).
 
 I build automation and analytics for SMEs: Lark/Feishu (AnyCross, Lark Base), n8n, and BI/reporting — mostly around **supply chain and operations**, where the flow has to survive contact with how people actually work, not just pass a demo.
 
