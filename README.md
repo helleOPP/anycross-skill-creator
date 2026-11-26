@@ -48,6 +48,14 @@ So this skill is built around one rule: **copy IDs from a real export, never fro
 
 ## Install
 
+**One command** (works with Claude Code, Cursor, Codex and other agents supported by the [skills CLI](https://skills.sh)):
+
+```bash
+npx skills add helleOPP/anycross-skill-creator
+```
+
+Or clone the repo:
+
 ```bash
 git clone https://github.com/helleOPP/anycross-skill-creator.git
 ```
