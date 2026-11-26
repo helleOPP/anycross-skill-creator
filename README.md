@@ -33,4 +33,4 @@ You get a `.zip`. In AnyCross: Workflow → **+** → **Import Workflow**.
 - [Common errors and fixes](anycross-creator/references/known-errors.md)
 - [How the skill works](anycross-creator/SKILL.md)
 
-MIT · Need a workflow built? **phucvn2019@gmail.com** — Phuc
+[MIT](LICENSE)
